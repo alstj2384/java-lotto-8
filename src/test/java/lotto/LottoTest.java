@@ -56,4 +56,13 @@ class LottoTest {
         );
     }
 
+    @Test
+    @DisplayName("생성된 로또는 오름차순으로 정렬되어야 한다")
+    void 생성된_로또는_오름차순으로_정렬되어야_한다() {
+        // given & when
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+
+        // then
+        assertThat(lotto.getLottoNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
 }
