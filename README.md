@@ -75,11 +75,11 @@
 
 ### 로또 (Lotto)
 
-- [ ]  로또 번호의 숫자 범위는 1 ~ 45
-- [ ]  중복되지 않는 숫자 6개
-- [ ]  [예외] 범위를 벗어나는 경우 IllegalArgumentException 발생
-- [ ]  [예외] 6자리가 아니면 IllegalArgumentException 발생
-- [ ]  [예외] 번호가 중복되면 IllegalArgumentException 발생
+- [x]  로또 번호의 숫자 범위는 1 ~ 45
+- [x]  중복되지 않는 숫자 6개
+- [x]  [예외] 범위를 벗어나는 경우 IllegalArgumentException 발생
+- [x]  [예외] 6자리가 아니면 IllegalArgumentException 발생
+- [x]  [예외] 번호가 중복되면 IllegalArgumentException 발생
 
 ---
 
