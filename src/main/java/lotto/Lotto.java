@@ -16,6 +16,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateIsDuplicated(numbers);
@@ -44,10 +48,6 @@ public class Lotto {
 
     private boolean validateNumberRange(Integer number) {
         return number < LOTTO_MIN_RANGE || number > LOTTO_MAX_RANGE;
-    }
-
-    public List<Integer> getLottoNumbers() {
-        return numbers;
     }
 
 }
