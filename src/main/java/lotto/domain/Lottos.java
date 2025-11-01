@@ -14,7 +14,7 @@ public class Lottos {
 
         for (Lotto lotto : lottos) {
             Prize result = lotto.getResult(winningLotto);
-            lottoResults.put(result);
+            lottoResults.add(result);
         }
         return lottoResults;
     }

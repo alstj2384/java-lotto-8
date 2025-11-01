@@ -14,12 +14,12 @@ public class LottoResults {
         init();
     }
 
-    public void put(Prize prize) {
+    public void add(Prize prize) {
         int prevCount = results.get(prize);
         results.put(prize, prevCount + 1);
     }
 
-    public long getTotalPrice() {
+    public long totalPrice() {
         long sum = 0;
         for (Entry<Prize, Integer> prizeIntegerEntry : results.entrySet()) {
             sum += prizeIntegerEntry.getKey().getPrizeMoney() * prizeIntegerEntry.getValue();
@@ -27,11 +27,11 @@ public class LottoResults {
         return sum;
     }
 
-    public double getProfit() {
-        return (getTotalPrice() / (double) (getLottoCount() * LottoConstant.LOTTO_PRICE)) * 100;
+    public double profitRate() {
+        return (totalPrice() / (double) (getLottoCount() * LottoConstant.LOTTO_PRICE)) * 100;
     }
 
-    public Map<Prize, Integer> getResults() {
+    public Map<Prize, Integer> results() {
         return Collections.unmodifiableMap(results);
     }
 

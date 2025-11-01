@@ -35,9 +35,9 @@ public class LottosTest {
 
         // when & then
         int i = 0;
-        for (Prize prize : lottoResults.getResults().keySet()) {
+        for (Prize prize : lottoResults.results().keySet()) {
             System.out.println(prize);
-            Assertions.assertThat(lottoResults.getResults().get(prize)).isEqualTo(prizes.get(i));
+            Assertions.assertThat(lottoResults.results().get(prize)).isEqualTo(prizes.get(i));
             i++;
         }
     }

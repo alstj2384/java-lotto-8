@@ -20,8 +20,8 @@ public class LottoGame {
     public LottoResultDto calculateResults() {
         LottoResults lottoResults = lottos.getResults(winningLotto);
 
-        Map<Prize, Integer> results = lottoResults.getResults();
-        double profit = lottoResults.getProfit();
+        Map<Prize, Integer> results = lottoResults.results();
+        double profit = lottoResults.profitRate();
 
         return LottoResultDto.from(results, profit);
     }

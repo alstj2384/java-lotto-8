@@ -10,13 +10,13 @@ public class LottoResultsTest {
     void 로또_결과_합계_금액_구하기() {
         LottoResults results = new LottoResults();
 
-        results.put(Prize.FIRST);
-        results.put(Prize.SECOND);
-        results.put(Prize.THIRD);
-        results.put(Prize.FOURTH);
-        results.put(Prize.FIFTH);
+        results.add(Prize.FIRST);
+        results.add(Prize.SECOND);
+        results.add(Prize.THIRD);
+        results.add(Prize.FOURTH);
+        results.add(Prize.FIFTH);
 
-        long totalPrice = results.getTotalPrice();
+        long totalPrice = results.totalPrice();
 
         Assertions.assertThat(totalPrice).isEqualTo(2000000000 + 30000000 + 1500000 + 50000 + 5000);
     }
