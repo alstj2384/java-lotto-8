@@ -23,7 +23,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // then
-        assertThat(lotto.getLottoNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(lotto.numbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
     @Test
@@ -64,6 +64,6 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
 
         // then
-        assertThat(lotto.getLottoNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(lotto.numbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }

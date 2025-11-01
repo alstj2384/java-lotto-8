@@ -23,7 +23,7 @@ public class OutputView {
 
     public void printLottoInfos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            println(lotto.getLottoNumbers().toString());
+            println(lotto.numbers().toString());
         }
     }
 

@@ -26,7 +26,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public List<Integer> getLottoNumbers() {
+    public List<Integer> numbers() {
         return numbers;
     }
 
