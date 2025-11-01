@@ -19,16 +19,16 @@ public class LottoGameApp {
     }
 
     public void run() {
-        inputBuyAmount();
-        printBuyResult();
+        inputPurchaseAmount();
+        printPurchaseResult();
 
-        getWinningLottoNumbers();
-        getBonusNumber();
+        inputWinningLottoNumbers();
+        inputBonusNumber();
 
-        printLottoResult();
+        printResults();
     }
 
-    private void inputBuyAmount() {
+    private void inputPurchaseAmount() {
         while (true) {
             try {
                 outputView.printInputMoneyAmount();
@@ -42,13 +42,13 @@ public class LottoGameApp {
         }
     }
 
-    private void printBuyResult() {
+    private void printPurchaseResult() {
         LottoBuyResultDto dto = lottoGame.getPurchasedLottos();
         outputView.printPurchaseAmountInfo(dto.size());
         outputView.printLottoInfos(dto.lottos());
     }
 
-    private void getWinningLottoNumbers() {
+    private void inputWinningLottoNumbers() {
         while (true) {
             try {
                 outputView.printInputLottoNumberGuidance();
@@ -62,7 +62,7 @@ public class LottoGameApp {
         }
     }
 
-    private void getBonusNumber() {
+    private void inputBonusNumber() {
         while (true) {
             try {
                 outputView.printInputBonusNumberGuidance();
@@ -76,7 +76,7 @@ public class LottoGameApp {
         }
     }
 
-    private void printLottoResult() {
+    private void printResults() {
         LottoResultDto dto = lottoGame.calculateResults();
         outputView.printResultStatistics(dto.results());
         outputView.printTotalProfit(dto.profit());
