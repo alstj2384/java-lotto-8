@@ -15,7 +15,7 @@ public class WinningLottoTest {
     @DisplayName("로또 번호와 보너스 번호가 중복되면 예외가 발생한다")
     void 로또_번호와_보너스_번호가_중복되면_예외가_발생한다() {
         // given
-        List<String> numbers = List.of("1", "2", "3", "4", "5", "45");
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 45);
         int bonusNumber = 1;
 
         // when & then
@@ -29,7 +29,7 @@ public class WinningLottoTest {
     @ValueSource(ints = {0, 46})
     void 보너스_번호는_1부터_45_사이의_숫자여야_한다(int bonusNumber) {
         // given
-        List<String> numbers = List.of("1", "2", "3", "4", "5", "6");
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         // when & then
         Assertions.assertThatThrownBy(() -> new WinningLotto(numbers, bonusNumber))

@@ -1,8 +1,8 @@
 package lotto.presentation;
 
+import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
 import lotto.domain.Prize;
 
 public class OutputView {
@@ -21,8 +21,8 @@ public class OutputView {
         println(String.format(PURCHASE_AMOUNT_GUIDANCE, amount));
     }
 
-    public void printLottoInfos(Lottos lottos) {
-        for (Lotto lotto : lottos.getLottos()) {
+    public void printLottoInfos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
             println(lotto.getLottoNumbers().toString());
         }
     }
@@ -50,10 +50,6 @@ public class OutputView {
 
     public void printExceptionMessage(String message) {
         println(message);
-    }
-
-    private void print(String input) {
-        System.out.print(input);
     }
 
     private void println(String input) {

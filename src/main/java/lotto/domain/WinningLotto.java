@@ -5,28 +5,17 @@ import lotto.domain.constants.ExceptionMessage;
 import lotto.domain.constants.LottoConstant;
 
 public class WinningLotto {
-    private final Lotto lotto;
-    private final int bonusNumber;
+    private Lotto lotto;
+    private int bonusNumber;
 
-    public WinningLotto(List<String> numbers, int bonusNumber) {
-        validateNumberRange(bonusNumber);
-        this.lotto = new Lotto(toIntegerList(numbers));
-        validateIsDuplicated(bonusNumber);
-        this.bonusNumber = bonusNumber;
+    public WinningLotto() {
     }
 
-    public WinningLotto(Lotto lotto, int bonusNumber) {
+    public WinningLotto(List<Integer> numbers, int bonusNumber) {
         validateNumberRange(bonusNumber);
-        this.lotto = lotto;
+        this.lotto = new Lotto(numbers);
         validateIsDuplicated(bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    private List<Integer> toIntegerList(List<String> numbers) {
-        return numbers.stream()
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
     }
 
     public Lotto getLotto() {
@@ -35,6 +24,16 @@ public class WinningLotto {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    public void setLotto(List<Integer> numbers) {
+        this.lotto = new Lotto(numbers);
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        validateNumberRange(bonusNumber);
+        validateIsDuplicated(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     private void validateNumberRange(int bonusNumber) {
@@ -48,5 +47,4 @@ public class WinningLotto {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
-
 }

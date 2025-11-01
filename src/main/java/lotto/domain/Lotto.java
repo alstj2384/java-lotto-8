@@ -32,15 +32,20 @@ public class Lotto {
 
     private List<Integer> sortNumbers(List<Integer> target) {
         List<Integer> numbers = new ArrayList<>(target);
-
         numbers.sort(Integer::compareTo);
         return List.copyOf(numbers);
+    }
+
+    private int getMatchCount(Lotto target) {
+        return (int) target.numbers.stream()
+                .filter(numbers::contains)
+                .count();
     }
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateIsDuplicated(numbers);
-        validateNumberRange(numbers);
+        validateRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -57,20 +62,13 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(this::validateNumberRange)) {
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(this::isOutOfRanges)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANCE.getMessage());
         }
     }
 
-    private boolean validateNumberRange(Integer number) {
+    private boolean isOutOfRanges(Integer number) {
         return number < LottoConstant.LOTTO_MIN_RANGE || number > LottoConstant.LOTTO_MAX_RANGE;
     }
-
-    private int getMatchCount(Lotto target) {
-        return (int) target.numbers.stream()
-                .filter(numbers::contains)
-                .count();
-    }
-
 }
