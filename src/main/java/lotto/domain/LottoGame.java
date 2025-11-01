@@ -14,7 +14,7 @@ public class LottoGame {
     }
 
     public void purchaseLottos(int money) {
-        lottos = LottoMachine.buy(money);
+        lottos = LottoMachine.purchase(money);
     }
 
     public LottoResultDto calculateResults() {

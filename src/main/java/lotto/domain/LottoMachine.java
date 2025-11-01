@@ -5,7 +5,7 @@ import lotto.domain.constants.ExceptionMessage;
 import lotto.domain.constants.LottoConstant;
 
 public class LottoMachine {
-    public static Lottos buy(int money) {
+    public static Lottos purchase(int money) {
         int amount = validate(money);
 
         return new Lottos(IntStream.range(0, amount)
