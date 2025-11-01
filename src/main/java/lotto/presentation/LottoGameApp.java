@@ -34,7 +34,7 @@ public class LottoGameApp {
                 outputView.printInputMoneyAmount();
                 String moneyString = inputView.getLine();
                 int money = IntegerParser.parseStringToInt(moneyString);
-                lottoGame.buy(money);
+                lottoGame.purchaseLottos(money);
                 return;
             } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e.getMessage());
@@ -43,7 +43,7 @@ public class LottoGameApp {
     }
 
     private void printBuyResult() {
-        LottoBuyResultDto dto = lottoGame.getBuyResult();
+        LottoBuyResultDto dto = lottoGame.getPurchasedLottos();
         outputView.printPurchaseAmountInfo(dto.size());
         outputView.printLottoInfos(dto.lottos());
     }
@@ -54,7 +54,7 @@ public class LottoGameApp {
                 outputView.printInputLottoNumberGuidance();
                 String input = inputView.getLine();
                 List<Integer> winningNumbers = CsvParser.parseToInt(input);
-                lottoGame.setWinningNumber(winningNumbers);
+                lottoGame.registerWinningNumbers(winningNumbers);
                 return;
             } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e.getMessage());
@@ -68,7 +68,7 @@ public class LottoGameApp {
                 outputView.printInputBonusNumberGuidance();
                 String input = inputView.getLine();
                 int bonusNumber = IntegerParser.parseStringToInt(input);
-                lottoGame.setBonusNumber(bonusNumber);
+                lottoGame.registerBonusNumber(bonusNumber);
                 return;
             } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e.getMessage());
@@ -77,7 +77,7 @@ public class LottoGameApp {
     }
 
     private void printLottoResult() {
-        LottoResultDto dto = lottoGame.getResults();
+        LottoResultDto dto = lottoGame.calculateResults();
         outputView.printResultStatistics(dto.results());
         outputView.printTotalProfit(dto.profit());
     }

@@ -13,11 +13,11 @@ public class LottoGame {
         this.winningLotto = new WinningLotto();
     }
 
-    public void buy(int money) {
+    public void purchaseLottos(int money) {
         lottos = LottoMachine.buy(money);
     }
 
-    public LottoResultDto getResults() {
+    public LottoResultDto calculateResults() {
         LottoResults lottoResults = lottos.getResults(winningLotto);
 
         Map<Prize, Integer> results = lottoResults.getResults();
@@ -26,18 +26,18 @@ public class LottoGame {
         return LottoResultDto.from(results, profit);
     }
 
-    public LottoBuyResultDto getBuyResult() {
+    public LottoBuyResultDto getPurchasedLottos() {
         int size = lottos.size();
         List<Lotto> lottoInfos = lottos.getLottos();
 
         return LottoBuyResultDto.from(size, lottoInfos);
     }
 
-    public void setWinningNumber(List<Integer> numbers) {
+    public void registerWinningNumbers(List<Integer> numbers) {
         winningLotto.setLotto(numbers);
     }
 
-    public void setBonusNumber(int bonusNumber) {
+    public void registerBonusNumber(int bonusNumber) {
         winningLotto.setBonusNumber(bonusNumber);
     }
 }
