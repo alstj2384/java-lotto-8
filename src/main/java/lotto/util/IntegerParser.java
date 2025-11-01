@@ -6,7 +6,7 @@ public class IntegerParser {
     private IntegerParser() {
     }
 
-    public static int parseStringToInt(String input) {
+    public static int parse(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

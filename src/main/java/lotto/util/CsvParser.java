@@ -14,14 +14,14 @@ public class CsvParser {
         return toIntegerList(values);
     }
 
-    private static String[] splitByDelimiter(String input){
+    private static String[] splitByDelimiter(String input) {
         return input.split(DELIMITER);
     }
 
-    private static List<Integer> toIntegerList(String[] values){
+    private static List<Integer> toIntegerList(String[] values) {
         return Arrays.stream(values)
                 .map(String::strip)
-                .map(IntegerParser::parseStringToInt)
+                .map(IntegerParser::parse)
                 .toList();
     }
 

@@ -33,7 +33,7 @@ public class LottoGameApp {
             try {
                 outputView.printInputMoneyAmount();
                 String moneyString = inputView.getUserInput();
-                int money = IntegerParser.parseStringToInt(moneyString);
+                int money = IntegerParser.parse(moneyString);
                 lottoGame.purchaseLottos(money);
                 return;
             } catch (IllegalArgumentException e) {
@@ -67,7 +67,7 @@ public class LottoGameApp {
             try {
                 outputView.printInputBonusNumberGuidance();
                 String input = inputView.getUserInput();
-                int bonusNumber = IntegerParser.parseStringToInt(input);
+                int bonusNumber = IntegerParser.parse(input);
                 lottoGame.registerBonusNumber(bonusNumber);
                 return;
             } catch (IllegalArgumentException e) {
