@@ -1,17 +1,32 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
-import lotto.constants.ExceptionMessage;
+import lotto.domain.constants.ExceptionMessage;
+import lotto.domain.constants.LottoConstant;
 
 public class WinningLotto {
     private final Lotto lotto;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
+    public WinningLotto(List<String> numbers, int bonusNumber) {
         validateNumberRange(bonusNumber);
-        this.lotto = new Lotto(numbers);
+        this.lotto = new Lotto(toIntegerList(numbers));
         validateIsDuplicated(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public WinningLotto(Lotto lotto, int bonusNumber) {
+        validateNumberRange(bonusNumber);
+        this.lotto = lotto;
+        validateIsDuplicated(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    private List<Integer> toIntegerList(List<String> numbers) {
+        return numbers.stream()
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
     }
 
     public Lotto getLotto() {
@@ -23,7 +38,7 @@ public class WinningLotto {
     }
 
     private void validateNumberRange(int bonusNumber) {
-        if (bonusNumber < Lotto.LOTTO_MIN_RANGE || bonusNumber > Lotto.LOTTO_MAX_RANGE) {
+        if (bonusNumber < LottoConstant.LOTTO_MIN_RANGE || bonusNumber > LottoConstant.LOTTO_MAX_RANGE) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANCE.getMessage());
         }
     }

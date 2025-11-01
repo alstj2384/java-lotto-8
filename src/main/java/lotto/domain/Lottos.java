@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -11,7 +11,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public Map<Prize, Integer> getResults(WinningLotto winningLotto) {
+    public LottoResults getResults(WinningLotto winningLotto) {
         // 로또 받으면 여러 개 비교해서 출력
         Map<Prize, Integer> results = new EnumMap<>(Prize.class);
 
@@ -32,7 +32,15 @@ public class Lottos {
                 results.put(result, results.get(result) + 1);
             }
         }
-        return results;
+        return new LottoResults(results);
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public int size() {
+        return lottos.size();
     }
 
 }

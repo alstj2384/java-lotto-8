@@ -1,13 +1,14 @@
 package lotto;
 
-import static lotto.constants.ExceptionMessage.DUPLICATED_LOTTO_NUMBER;
-import static lotto.constants.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
-import static lotto.constants.ExceptionMessage.INVALID_LOTTO_NUMBER_RANCE;
+import static lotto.domain.constants.ExceptionMessage.DUPLICATED_LOTTO_NUMBER;
+import static lotto.domain.constants.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.domain.constants.ExceptionMessage.INVALID_LOTTO_NUMBER_RANCE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

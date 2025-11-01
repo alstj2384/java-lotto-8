@@ -1,20 +1,29 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.constants.ExceptionMessage;
+import lotto.domain.constants.ExceptionMessage;
+import lotto.domain.constants.LottoConstant;
 
 public class Lotto {
-    public static final int LOTTO_MAX_RANGE = 45;
-    public static final int LOTTO_MIN_RANGE = 1;
-    public static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = sortNumbers(numbers);
+    }
+
+    public Prize getResult(WinningLotto winningLotto) {
+        int count = getMatchCount(winningLotto.getLotto());
+        boolean hasBonusNumber = numbers.contains(winningLotto.getBonusNumber());
+
+        return Prize.getPrize(count, hasBonusNumber);
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     public List<Integer> getLottoNumbers() {
@@ -35,7 +44,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LottoConstant.LOTTO_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
@@ -55,7 +64,13 @@ public class Lotto {
     }
 
     private boolean validateNumberRange(Integer number) {
-        return number < LOTTO_MIN_RANGE || number > LOTTO_MAX_RANGE;
+        return number < LottoConstant.LOTTO_MIN_RANGE || number > LottoConstant.LOTTO_MAX_RANGE;
+    }
+
+    private int getMatchCount(Lotto target) {
+        return (int) target.numbers.stream()
+                .filter(numbers::contains)
+                .count();
     }
 
 }
