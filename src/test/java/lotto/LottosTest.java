@@ -5,14 +5,16 @@ import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResults;
 import lotto.domain.Lottos;
+import lotto.domain.Prize;
 import lotto.domain.WinningLotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class LottosTest {
-    private static final List<String> WINNING_LOTTO_NUMBERS = List.of("1", "2", "3", "4", "5", "6");
+    private static final List<Integer> WINNING_LOTTO_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
     private static final int WINNING_BONUS_NUMBER = 45;
     private static final Lotto FIRST_PRICE_LOTTO = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     private static final Lotto SECOND_PRICE_LOTTO = new Lotto(List.of(1, 2, 3, 4, 5, WINNING_BONUS_NUMBER));
@@ -32,11 +34,12 @@ public class LottosTest {
         LottoResults lottoResults = lottos.getResults(winningLotto);
 
         // when & then
-//        int i = 0;
-//        for (Prize prize : results.keySet()) {
-//            Assertions.assertThat(results.get(prize)).isEqualTo(prizes.get(i));
-//            i++;
-//        }
+        int i = 0;
+        for (Prize prize : lottoResults.getResults().keySet()) {
+            System.out.println(prize);
+            Assertions.assertThat(lottoResults.getResults().get(prize)).isEqualTo(prizes.get(i));
+            i++;
+        }
     }
 
     static Stream<Arguments> provideSuccessLottoResult() {
@@ -69,6 +72,4 @@ public class LottosTest {
                 ), List.of(0, 0, 0, 0, 0, 4))
         );
     }
-
-
 }
