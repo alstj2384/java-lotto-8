@@ -32,7 +32,7 @@ public class LottoGameApp {
         while (true) {
             try {
                 outputView.printInputMoneyAmount();
-                String moneyString = inputView.getLine();
+                String moneyString = inputView.getUserInput();
                 int money = IntegerParser.parseStringToInt(moneyString);
                 lottoGame.purchaseLottos(money);
                 return;
@@ -52,7 +52,7 @@ public class LottoGameApp {
         while (true) {
             try {
                 outputView.printInputLottoNumberGuidance();
-                String input = inputView.getLine();
+                String input = inputView.getUserInput();
                 List<Integer> winningNumbers = CsvParser.parseToInt(input);
                 lottoGame.registerWinningNumbers(winningNumbers);
                 return;
@@ -66,7 +66,7 @@ public class LottoGameApp {
         while (true) {
             try {
                 outputView.printInputBonusNumberGuidance();
-                String input = inputView.getLine();
+                String input = inputView.getUserInput();
                 int bonusNumber = IntegerParser.parseStringToInt(input);
                 lottoGame.registerBonusNumber(bonusNumber);
                 return;
