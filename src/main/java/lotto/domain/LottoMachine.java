@@ -9,7 +9,7 @@ public class LottoMachine {
         int amount = validate(money);
 
         return new Lottos(IntStream.range(0, amount)
-                .mapToObj(i -> new Lotto(RandomLottoNumberGenerator.generateNumbers()))
+                .mapToObj(i -> new Lotto(RandomLottoNumberGenerator.generate()))
                 .toList());
     }
 
