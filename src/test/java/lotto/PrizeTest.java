@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class PrizeTest {
-
     @ParameterizedTest
     @MethodSource("provideConditions")
     @DisplayName("조건에 맞는 등수가 결정되어야 한다")
@@ -32,5 +31,4 @@ public class PrizeTest {
                 Arguments.of(0, false, Prize.LOSE)
         );
     }
-
 }

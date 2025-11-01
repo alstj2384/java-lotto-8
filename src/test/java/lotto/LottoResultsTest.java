@@ -20,5 +20,4 @@ public class LottoResultsTest {
 
         Assertions.assertThat(totalPrice).isEqualTo(2000000000 + 30000000 + 1500000 + 50000 + 5000);
     }
-
 }

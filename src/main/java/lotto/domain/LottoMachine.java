@@ -35,5 +35,4 @@ public class LottoMachine {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_MONEY_RANCE.getMessage());
         }
     }
-
 }

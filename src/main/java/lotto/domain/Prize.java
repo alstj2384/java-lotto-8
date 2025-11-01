@@ -29,5 +29,4 @@ public enum Prize {
                 .findFirst()
                 .orElse(LOSE);
     }
-
 }

@@ -36,5 +36,4 @@ public class LottoMachineTest {
         Assertions.assertThatThrownBy(() -> LottoMachine.purchase(money)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INVALID_MONEY_RANCE.getMessage());
     }
-
 }

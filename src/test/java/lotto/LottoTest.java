@@ -15,7 +15,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
-
     @Test
     @DisplayName("생성 테스트")
     void 정상적인_로또_번호로_생성할_수_있다() {
