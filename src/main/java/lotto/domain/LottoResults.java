@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Collections;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.domain.constants.LottoConstant;
@@ -7,8 +9,14 @@ import lotto.domain.constants.LottoConstant;
 public class LottoResults {
     private final Map<Prize, Integer> results;
 
-    public LottoResults(Map<Prize, Integer> results) {
-        this.results = results;
+    public LottoResults() {
+        results = new EnumMap<>(Prize.class);
+        init();
+    }
+
+    public void put(Prize prize) {
+        int prevCount = results.get(prize);
+        results.put(prize, prevCount + 1);
     }
 
     public long getTotalPrice() {
@@ -20,17 +28,24 @@ public class LottoResults {
     }
 
     public double getProfit() {
-        System.out.println(getTotalPrice());
-        System.out.println((double) (getSize() * LottoConstant.LOTTO_PRICE));
-        return (getTotalPrice() / (double) (getSize() * LottoConstant.LOTTO_PRICE)) * 100;
+        return (getTotalPrice() / (double) (getLottoCount() * LottoConstant.LOTTO_PRICE)) * 100;
     }
 
-    private int getSize() {
+    public Map<Prize, Integer> getResults() {
+        return Collections.unmodifiableMap(results);
+    }
+
+    private int getLottoCount() {
         return results.values().stream()
                 .reduce(0, Integer::sum);
     }
 
-    public Map<Prize, Integer> getResults() {
-        return results;
+    private void init() {
+        results.put(Prize.FIRST, 0);
+        results.put(Prize.SECOND, 0);
+        results.put(Prize.THIRD, 0);
+        results.put(Prize.FOURTH, 0);
+        results.put(Prize.FIFTH, 0);
+        results.put(Prize.LOSE, 0);
     }
 }
