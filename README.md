@@ -142,7 +142,6 @@ src/main/java/lotto/
 #### 로또 구입 금액
 
 - [x] 양수를 입력받는다
-- [x] [예외] 공백 및 null 입력 시 IllegalArgumentException 발생
 - [x] [예외] 숫자가 아닌 값이 입력되면 IllegalArgumentException 발생
 
 #### 당첨 번호
@@ -150,14 +149,12 @@ src/main/java/lotto/
 - [x] 번호는 쉼표(,)를 기준으로 구분한다
 - [x] 입력 사이 공백 허용 (예: 1, 2, 3)
 - [x] 숫자 사이의 공백은 허용하지 않음 (예: "1 2")
-- [x] [예외] 공백 및 null 입력 시 IllegalArgumentException 발생
 - [x] [예외] 쉼표(,)와 숫자가 아닌 입력이 들어오면 IllegalArgumentException 발생
 - [x] [예외] 숫자 사이에 공백이 입력되면 IllegalArgumentException 발생
 
 #### 보너스 번호
 
 - [x] 숫자를 입력받는다
-- [x] [예외] 공백 및 null 입력 시 IllegalArgumentException 발생
 - [x] [예외] 숫자가 아닌 값이 입력되면 IllegalArgumentException 발생
 
 ---

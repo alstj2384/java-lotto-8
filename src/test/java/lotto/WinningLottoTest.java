@@ -10,8 +10,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningLottoTest {
-    @Test
     @DisplayName("로또 번호와 보너스 번호가 중복되면 예외가 발생한다")
+    @Test
     void 로또_번호와_보너스_번호가_중복되면_예외가_발생한다() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 45);

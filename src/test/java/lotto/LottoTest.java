@@ -15,8 +15,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
+    @DisplayName("정상 로또 생성 테스트")
     @Test
-    @DisplayName("생성 테스트")
     void 정상적인_로또_번호로_생성할_수_있다() {
         // give & when
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -25,6 +25,7 @@ class LottoTest {
         assertThat(lotto.numbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다")
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -40,9 +41,9 @@ class LottoTest {
                 .hasMessageContaining(DUPLICATED_LOTTO_NUMBER.getMessage());
     }
 
+    @DisplayName("범위가 벗어난 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("provideOutOfRanceLottoNumbers")
-    @DisplayName("범위가 벗어난 숫자가 있으면 예외가 발생한다.")
     void 범위를_벗어난_숫자가_있으면_예외가_발생한다(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -56,8 +57,8 @@ class LottoTest {
         );
     }
 
-    @Test
     @DisplayName("생성된 로또는 오름차순으로 정렬되어야 한다")
+    @Test
     void 생성된_로또는_오름차순으로_정렬되어야_한다() {
         // given & when
         Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));

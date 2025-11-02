@@ -9,9 +9,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class PrizeTest {
+    @DisplayName("조건에 맞는 등수가 결정되어야 한다")
     @ParameterizedTest
     @MethodSource("provideConditions")
-    @DisplayName("조건에 맞는 등수가 결정되어야 한다")
     void 조건에_맞는_등수가_결정되어야_한다(int condition, boolean hasBonusNumber, Prize expected) {
         Assertions.assertThat(Prize.getPrize(condition, hasBonusNumber)).isEqualTo(expected);
     }
