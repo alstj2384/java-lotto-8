@@ -9,10 +9,6 @@ public class LottoGame {
     private Lottos lottos;
     private WinningLotto winningLotto;
 
-    public LottoGame() {
-        this.winningLotto = new WinningLotto();
-    }
-
     public void purchaseLottos(int money) {
         lottos = LottoMachine.purchase(money);
     }
@@ -23,21 +19,17 @@ public class LottoGame {
         Map<Prize, Integer> results = lottoResults.results();
         double profit = lottoResults.profitRate();
 
-        return LottoResultDto.from(results, profit);
+        return new LottoResultDto(results, profit);
     }
 
     public LottoBuyResultDto getPurchasedLottos() {
         int size = lottos.size();
         List<Lotto> lottoInfos = lottos.getLottos();
 
-        return LottoBuyResultDto.from(size, lottoInfos);
+        return new LottoBuyResultDto(size, lottoInfos);
     }
 
-    public void registerWinningNumbers(List<Integer> numbers) {
-        winningLotto.setLotto(numbers);
-    }
-
-    public void registerBonusNumber(int bonusNumber) {
-        winningLotto.setBonusNumber(bonusNumber);
+    public void registerWinningLotto(List<Integer> numbers, int bonus) {
+        this.winningLotto = new WinningLotto(numbers, bonus);
     }
 }

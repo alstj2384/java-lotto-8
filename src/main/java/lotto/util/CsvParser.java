@@ -24,6 +24,4 @@ public class CsvParser {
                 .map(IntegerParser::parse)
                 .toList();
     }
-
-
 }

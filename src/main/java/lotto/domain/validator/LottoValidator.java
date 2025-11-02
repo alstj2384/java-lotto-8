@@ -3,12 +3,22 @@ package lotto.domain.validator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.domain.Lotto;
 import lotto.domain.constants.ExceptionMessage;
 import lotto.domain.constants.LottoConstant;
 
 public class LottoValidator {
     private LottoValidator() {
+    }
+
+    public static void validateLotto(List<Integer> numbers) {
+        validateSize(numbers);
+        validateRange(numbers);
+        validateIsDuplicated(numbers);
+    }
+
+    public static void validateWinningLotto(List<Integer> numbers, int bonusNumber) {
+        validateIsDuplicatedBonusNumber(numbers, bonusNumber);
+        validateNumberRange(bonusNumber);
     }
 
     public static void validateSize(List<Integer> numbers) {
@@ -35,8 +45,8 @@ public class LottoValidator {
         }
     }
 
-    public static void validateIsDuplicatedBonusNumber(Lotto lotto, int bonusNumber) {
-        if (lotto.contains(bonusNumber)) {
+    public static void validateIsDuplicatedBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }

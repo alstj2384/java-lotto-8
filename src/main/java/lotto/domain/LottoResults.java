@@ -36,8 +36,7 @@ public class LottoResults {
     }
 
     private int getLottoCount() {
-        return results.values().stream()
-                .reduce(0, Integer::sum);
+        return results.values().stream().reduce(0, Integer::sum);
     }
 
     private void init() {

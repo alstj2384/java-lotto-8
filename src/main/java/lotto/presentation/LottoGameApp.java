@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.LottoGame;
 import lotto.domain.dto.LottoBuyResultDto;
 import lotto.domain.dto.LottoResultDto;
+import lotto.domain.validator.LottoValidator;
 import lotto.util.CsvParser;
 import lotto.util.IntegerParser;
 
@@ -22,8 +23,7 @@ public class LottoGameApp {
         inputPurchaseAmount();
         printPurchaseResult();
 
-        inputWinningLottoNumbers();
-        inputBonusNumber();
+        inputWinningLotto();
 
         printResults();
     }
@@ -48,28 +48,39 @@ public class LottoGameApp {
         outputView.printLottoInfos(dto.lottos());
     }
 
-    private void inputWinningLottoNumbers() {
+    private void inputWinningLotto() {
+        List<Integer> numbers = inputWinningLottoNumbers();
+        int bonus = inputBonusNumber(numbers);
+
+        lottoGame.registerWinningLotto(numbers, bonus);
+    }
+
+    private List<Integer> inputWinningLottoNumbers() {
         while (true) {
             try {
                 outputView.printInputLottoNumberGuidance();
                 String input = inputView.getUserInput();
-                List<Integer> winningNumbers = CsvParser.parseToInt(input);
-                lottoGame.registerWinningNumbers(winningNumbers);
-                return;
+                List<Integer> numbers = CsvParser.parseToInt(input);
+
+                LottoValidator.validateLotto(numbers);
+
+                return numbers;
             } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e.getMessage());
             }
         }
     }
 
-    private void inputBonusNumber() {
+    private int inputBonusNumber(List<Integer> numbers) {
         while (true) {
             try {
                 outputView.printInputBonusNumberGuidance();
                 String input = inputView.getUserInput();
                 int bonusNumber = IntegerParser.parse(input);
-                lottoGame.registerBonusNumber(bonusNumber);
-                return;
+
+                LottoValidator.validateWinningLotto(numbers, bonusNumber);
+
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e.getMessage());
             }
