@@ -3,6 +3,7 @@ package lotto.domain.validator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.Lotto;
 import lotto.domain.constants.ExceptionMessage;
 import lotto.domain.constants.LottoConstant;
 
@@ -25,8 +26,18 @@ public class LottoValidator {
     }
 
     public static void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(LottoValidator::isOutOfRange)) {
+        numbers.forEach(LottoValidator::validateNumberRange);
+    }
+
+    public static void validateNumberRange(int number) {
+        if (isOutOfRange(number)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANCE.getMessage());
+        }
+    }
+
+    public static void validateIsDuplicatedBonusNumber(Lotto lotto, int bonusNumber) {
+        if (lotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
 

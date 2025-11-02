@@ -1,8 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.domain.constants.ExceptionMessage;
-import lotto.domain.constants.LottoConstant;
+import lotto.domain.validator.LottoValidator;
 
 public class WinningLotto {
     private Lotto lotto;
@@ -12,9 +11,9 @@ public class WinningLotto {
     }
 
     public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        validateNumberRange(bonusNumber);
+        LottoValidator.validateNumberRange(bonusNumber);
         this.lotto = new Lotto(numbers);
-        validateIsDuplicated(bonusNumber);
+        LottoValidator.validateIsDuplicatedBonusNumber(lotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -31,20 +30,8 @@ public class WinningLotto {
     }
 
     public void setBonusNumber(int bonusNumber) {
-        validateNumberRange(bonusNumber);
-        validateIsDuplicated(bonusNumber);
+        LottoValidator.validateNumberRange(bonusNumber);
+        LottoValidator.validateIsDuplicatedBonusNumber(lotto, bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    private void validateNumberRange(int bonusNumber) {
-        if (bonusNumber < LottoConstant.LOTTO_MIN_RANGE || bonusNumber > LottoConstant.LOTTO_MAX_RANGE) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANCE.getMessage());
-        }
-    }
-
-    private void validateIsDuplicated(int bonusNumber) {
-        if (lotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
-        }
     }
 }
