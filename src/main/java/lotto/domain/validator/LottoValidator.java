@@ -11,23 +11,27 @@ public class LottoValidator {
     }
 
     public static void validateLotto(List<Integer> numbers) {
-        validateSize(numbers);
-        validateRange(numbers);
-        validateIsDuplicated(numbers);
+        validateLottoSize(numbers);
+        validateNumberRanges(numbers);
+        validateHasUniqueNumbers(numbers);
     }
 
     public static void validateWinningLotto(List<Integer> numbers, int bonusNumber) {
-        validateIsDuplicatedBonusNumber(numbers, bonusNumber);
+        validateHasDuplicatedNumber(numbers, bonusNumber);
         validateNumberRange(bonusNumber);
     }
 
-    public static void validateSize(List<Integer> numbers) {
+    private static void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
-    public static void validateIsDuplicated(List<Integer> numbers) {
+    private static void validateNumberRanges(List<Integer> numbers) {
+        numbers.forEach(LottoValidator::validateNumberRange);
+    }
+
+    private static void validateHasUniqueNumbers(List<Integer> numbers) {
         Set<Integer> uniqueValues = new HashSet<>(numbers);
 
         if (uniqueValues.size() != numbers.size()) {
@@ -35,19 +39,15 @@ public class LottoValidator {
         }
     }
 
-    public static void validateRange(List<Integer> numbers) {
-        numbers.forEach(LottoValidator::validateNumberRange);
-    }
-
-    public static void validateNumberRange(int number) {
-        if (isOutOfRange(number)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANCE.getMessage());
+    private static void validateHasDuplicatedNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
 
-    public static void validateIsDuplicatedBonusNumber(List<Integer> numbers, int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
+    private static void validateNumberRange(int number) {
+        if (isOutOfRange(number)) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANCE.getMessage());
         }
     }
 
