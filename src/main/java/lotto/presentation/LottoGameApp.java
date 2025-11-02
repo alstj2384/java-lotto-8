@@ -13,10 +13,10 @@ public class LottoGameApp {
     private final OutputView outputView;
     private final LottoGame lottoGame;
 
-    public LottoGameApp(InputView inputView, OutputView outputView) {
+    public LottoGameApp(InputView inputView, OutputView outputView, LottoGame lottoGame) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoGame = new LottoGame();
+        this.lottoGame = lottoGame;
     }
 
     public void run() {
