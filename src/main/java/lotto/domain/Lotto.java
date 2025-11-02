@@ -1,11 +1,8 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import lotto.domain.constants.ExceptionMessage;
-import lotto.domain.constants.LottoConstant;
+import lotto.domain.validator.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -30,6 +27,12 @@ public class Lotto {
         return numbers;
     }
 
+    private void validate(List<Integer> numbers) {
+        LottoValidator.validateSize(numbers);
+        LottoValidator.validateIsDuplicated(numbers);
+        LottoValidator.validateRange(numbers);
+    }
+
     private List<Integer> sortNumbers(List<Integer> target) {
         List<Integer> numbers = new ArrayList<>(target);
         numbers.sort(Integer::compareTo);
@@ -40,35 +43,5 @@ public class Lotto {
         return (int) target.numbers.stream()
                 .filter(numbers::contains)
                 .count();
-    }
-
-    private void validate(List<Integer> numbers) {
-        validateSize(numbers);
-        validateIsDuplicated(numbers);
-        validateRange(numbers);
-    }
-
-    private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LottoConstant.LOTTO_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
-        }
-    }
-
-    private void validateIsDuplicated(List<Integer> numbers) {
-        Set<Integer> uniqueValues = new HashSet<>(numbers);
-
-        if (uniqueValues.size() != numbers.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
-        }
-    }
-
-    private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(this::isOutOfRanges)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANCE.getMessage());
-        }
-    }
-
-    private boolean isOutOfRanges(Integer number) {
-        return number < LottoConstant.LOTTO_MIN_RANGE || number > LottoConstant.LOTTO_MAX_RANGE;
     }
 }
